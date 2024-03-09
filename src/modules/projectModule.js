@@ -1,4 +1,3 @@
-
 import renderProjects from "./renderProjects.js";
 import addProject from "./addProject.js";
 import addTodo from "./addTodo.js";

@@ -1,9 +1,15 @@
-import projectModule from './modules/projectModule.js';
+import { projects } from './modules/projectModule.js';
+import handleProjectInput from './modules/handleProjectInput.js';
+import renderProjects from './modules/renderProjects.js';
 
-function render(content) {
-    const mainContent = document.getElementById('app');
+function render() {
+    const { form } = handleProjectInput();
 
-    return mainContent;
+    document.body.appendChild(form);
+
+    renderProjects();
+
 }
 
-// render(projectModule());
+render();
+
