@@ -1,13 +1,11 @@
 import { projects } from './projectModule.js';
+import addTodo from './addTodo.js';
 
 export default function renderProjects() {
     const mainContent = document.getElementById('app');
-
     mainContent.innerHTML = '';
 
-    projects.forEach(project => { //loop through the array and console log the objects
-        console.log(project);
-
+    projects.map((project, index) => {
         const projectTitle = project.title;
         const projectDescription = project.description;
 
@@ -16,6 +14,14 @@ export default function renderProjects() {
         titleContainer.textContent = projectTitle;
         descContainer.textContent = projectDescription;
 
-        mainContent.append(titleContainer, descContainer);
+        const addTaskInput = document.createElement('input');
+        const addTodoButton = document.createElement('button');
+        addTodoButton.textContent = 'Add Task';
+
+        addTodoButton.addEventListener('click', () => {
+            addTodo(index, addTaskInput.value);
+        });
+
+        mainContent.append(titleContainer, descContainer, addTaskInput, addTodoButton);
     });
 }

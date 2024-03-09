@@ -13,7 +13,7 @@ class Project { //main constructor for Project
 }
 
 addProject("Study", "Learn new things");
-addTodo(2);
+// addTodo(2);
 renderProjects(projects);
 
 export { Project, projects };
