@@ -1,5 +1,4 @@
 import { projects } from "./projectModule.js";
-import renderTasks from "./renderTodo.js";
 
 export default function addTodo(projectIndex, addTaskInput) {
 

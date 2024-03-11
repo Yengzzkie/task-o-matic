@@ -1,5 +1,6 @@
 @import './css/handleProjectInput.css';
 @import './css/renderProjects.css';
+@import './css/warningModal.css';
 
 * {
     box-sizing: border-box;
@@ -11,6 +12,16 @@ body {
     background: linear-gradient(140deg, rgb(255, 98, 25), rgb(255, 114, 48), rgb(253, 154, 107), rgb(255, 202, 178)) no-repeat center;
     background-size: cover;
     height: 100vh;
+}
+
+#app {
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+}
+
+header {
+    border: 1px solid black;
+    padding: 10px 15px;
 }
 
 button {

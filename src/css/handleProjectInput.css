@@ -1,4 +1,17 @@
 input {
     background: rgb(198, 245, 198);
-    margin-left: 5px;
+    margin-left: 10px;
+}
+
+select {
+    border: none;
+    padding: 5px;
+}
+
+dialog {
+    padding: 20px 30px;
+}
+
+form {
+    grid-column: 1 / 2;
 }

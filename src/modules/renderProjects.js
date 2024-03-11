@@ -3,51 +3,59 @@ import addTodo from './addTodo.js';
 import '../css/renderProjects.css';
 
 export default function renderProjects() {
-    const mainContent = document.getElementById('app');
-    
-    mainContent.innerHTML = '';
+  const app = document.getElementById('app');
+  const projectWrapper = document.createElement('div');
+  projectWrapper.className = 'project-wrapper';
 
-    projects.map((project, index) => {
-        const projectContainer = document.createElement('div');
-        projectContainer.className = 'project-container';
-        const projectTitle = project.title;
-        const projectDescription = project.description;
+  app.innerHTML = '';
 
-        const titleContainer = document.createElement('h1');
-        const descContainer = document.createElement('p');
-        titleContainer.textContent = projectTitle;
-        descContainer.textContent = projectDescription;
+  projects.forEach((project, index) => {
+    const projectContainer = document.createElement('div');
+    projectContainer.className = 'project-container';
 
-        const addTaskInput = document.createElement('input');
-        const addTaskButton = document.createElement('button');
-        addTaskButton.textContent = 'Add Task';
+    if (index === projects.length - 1) {
+      // If it's the last (newly added) project, add the 'active' class for animation
+      projectContainer.classList.add('active');
+    }
 
-        const ul = document.createElement('ul');
-        
-        const tasks = project.todo;
+    const projectTitle = project.title;
+    const projectDescription = project.description;
 
-        addTaskButton.addEventListener('click', () => {
-            addTodo(index, addTaskInput.value);
-            renderTodo();
-        });
+    const titleContainer = document.createElement('h1');
+    const descContainer = document.createElement('p');
+    titleContainer.textContent = projectTitle;
+    descContainer.textContent = projectDescription;
 
-        function renderTodo() {
-            ul.innerHTML = ''; // Clear the previous content
+    const addTaskInput = document.createElement('input');
+    const addTaskButton = document.createElement('button');
+    addTaskButton.textContent = 'Add Task';
 
-            tasks.map((task) => {    
-                const li = document.createElement('li');
-                li.textContent = task;
-                ul.appendChild(li);
-            });
+    const ul = document.createElement('ul');
 
-            console.log(tasks);
-        }
-
-        renderTodo(); //initialize the todo array on each project
-                    //so everytime a new project is added, the todo array will rerender on each project object
-
-        projectContainer.append(titleContainer, descContainer, addTaskInput, addTaskButton, ul);
-
-        mainContent.append(projectContainer);
+    addTaskButton.addEventListener('click', () => {
+      addTodo(index, addTaskInput.value);
+      addTaskInput.value = ''; // Clear the input field
+      renderTodo();
     });
-};
+
+    function renderTodo() {
+      ul.innerHTML = ''; // Clear the previous todo content
+
+      const tasks = project.todo;
+
+      tasks.forEach((task) => {
+        const li = document.createElement('li');
+        li.textContent = task;
+        ul.appendChild(li);
+      });
+      console.log(tasks);
+    }
+
+    renderTodo(); // Initialize the todo array on each project
+    // So every time a new project is added, the todo array will re-render on each project object
+
+    projectContainer.append(titleContainer, descContainer, addTaskInput, addTaskButton, ul);
+    projectWrapper.appendChild(projectContainer);
+    app.append(projectWrapper);
+  });
+}
