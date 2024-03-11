@@ -1,5 +1,6 @@
 import addProject from "./addProject.js";
 import renderProjects from "./renderProjects.js";
+import renderTodo from './renderProjects.js';
 
 export default function handleProjectInput() {
     const form = document.createElement('form');
