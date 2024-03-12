@@ -28,7 +28,7 @@ export default function renderProjects() {
 
     const titleContainer = document.createElement('h1');
     const descContainer = document.createElement('p');
-    titleContainer.textContent = projectTitle;
+    titleContainer.innerHTML = projectTitle;
     descContainer.textContent = projectDescription;
 
     const addTaskInput = document.createElement('input');
