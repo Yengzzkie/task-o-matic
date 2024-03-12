@@ -1,13 +1,18 @@
 import { projects } from './projectModule.js';
+import handleProjectInput from './handleProjectInput.js';
 import addTodo from './addTodo.js';
+import renderTodo from './renderTodo.js';
 import '../css/renderProjects.css';
 
 export default function renderProjects() {
   const app = document.getElementById('app');
+  const formWrapper = document.createElement('div');
+  const { form } = handleProjectInput();
   const projectWrapper = document.createElement('div');
   projectWrapper.className = 'project-wrapper';
+  formWrapper.className = 'form-wrapper';
 
-  app.innerHTML = '';
+  app.innerHTML = ''; //clears the contents everytime a new project is added to avoid duplication of projects
 
   projects.forEach((project, index) => {
     const projectContainer = document.createElement('div');
@@ -35,27 +40,14 @@ export default function renderProjects() {
     addTaskButton.addEventListener('click', () => {
       addTodo(index, addTaskInput.value);
       addTaskInput.value = ''; // Clear the input field
-      renderTodo();
+      renderTodo(project, ul); // Pass project and ul to renderTodo
     });
 
-    function renderTodo() {
-      ul.innerHTML = ''; // Clear the previous todo content
-
-      const tasks = project.todo;
-
-      tasks.forEach((task) => {
-        const li = document.createElement('li');
-        li.textContent = task;
-        ul.appendChild(li);
-      });
-      console.log(tasks);
-    }
-
-    renderTodo(); // Initialize the todo array on each project
+    renderTodo(project, ul); // Initialize the todo array on each project
     // So every time a new project is added, the todo array will re-render on each project object
-
+    formWrapper.appendChild(form);
     projectContainer.append(titleContainer, descContainer, addTaskInput, addTaskButton, ul);
     projectWrapper.appendChild(projectContainer);
-    app.append(projectWrapper);
+    app.append(formWrapper, projectWrapper);
   });
 }
