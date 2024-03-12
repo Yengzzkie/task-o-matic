@@ -18,17 +18,30 @@ export default function renderProjects() {
     const projectContainer = document.createElement('div');
     projectContainer.className = 'project-container';
 
+    const iconsContainer = document.createElement('div'); 
+    iconsContainer.className = 'icons-container';
+    const editBtn = document.createElement('button');
+    editBtn.innerHTML = `<i class="fa-solid fa-pen-to-square"></i>`; //edit project content function
+
+    const deleteBtn = document.createElement('button'); 
+    deleteBtn.innerHTML = `<i class="fa-solid fa-trash"></i>`;
+    deleteBtn.addEventListener('click', function() { //delete project function
+      projects.splice(index, 1);
+      renderProjects();
+    })
+
+    iconsContainer.append(editBtn, deleteBtn);
+  
     if (index === projects.length - 1) {
-      // If it's the last (newly added) project, add the 'active' class for animation
       projectContainer.classList.add('active');
     }
-
+    
     const projectTitle = project.title;
     const projectDescription = project.description;
-
+  
     const titleContainer = document.createElement('h1');
     const descContainer = document.createElement('p');
-    titleContainer.innerHTML = projectTitle;
+    titleContainer.append(projectTitle);
     descContainer.textContent = projectDescription;
 
     const addTaskInput = document.createElement('input');
@@ -45,8 +58,9 @@ export default function renderProjects() {
 
     renderTodo(project, ul); // Initialize the todo array on each project
     // So every time a new project is added, the todo array will re-render on each project object
+    
     formWrapper.appendChild(form);
-    projectContainer.append(titleContainer, descContainer, addTaskInput, addTaskButton, ul);
+    projectContainer.append(iconsContainer, titleContainer, descContainer, addTaskInput, addTaskButton, ul);
     projectWrapper.appendChild(projectContainer);
     app.append(formWrapper, projectWrapper);
   });
