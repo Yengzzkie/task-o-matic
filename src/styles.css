@@ -4,6 +4,11 @@
 @import './css/renderTodo.css';
 @import './css/header.css';
 
+:root {
+    --light-background: rgb(244, 252, 255);
+    --yellow: rgb(252, 228, 90);
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -11,7 +16,8 @@
 }
 
 body {
-    background: linear-gradient(140deg, rgb(255, 98, 25), rgb(255, 114, 48), rgb(253, 154, 107), rgb(255, 202, 178)) no-repeat center;
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--light-background);
     background-size: cover;
     height: 100vh;
 }
@@ -27,6 +33,16 @@ button {
     width: 100px;
     padding: 5px 3px;
     margin: 10px;
+    cursor: pointer;
+    transition: all .5s;
+}
+
+button:hover {
+    background: greenyellow;
+}
+
+button:active {
+    transform: scale(.9);
 }
 
 input {

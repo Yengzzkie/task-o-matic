@@ -1,6 +1,7 @@
 .project-container {
     position: relative;
-    border: 1px solid black;
+    background: var(--yellow);
+    box-shadow: 0 .5rem .8rem gray;
     width: 300px;
     height: 100%;
     padding: 30px 20px;
@@ -49,6 +50,18 @@
             background: rgb(104, 255, 10);
         }
     }
+}
+
+.project-container:after {
+    position: absolute;
+    left: 0;
+    bottom: -18%;
+    content: '';
+    background: var(--light-background);
+    width: 100%;
+    height: 40px;
+    border-radius: 60%;
+    z-index: 2;
 }
 
 .project-container.active {

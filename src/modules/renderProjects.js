@@ -1,71 +1,92 @@
-import { projects } from './projectModule.js';
-import handleProjectInput from './handleProjectInput.js';
-import addTodo from './addTodo.js';
-import renderTodo from './renderTodo.js';
-import deleteProject from './deleteProject.js';
-import editModal from './editModal.js';
-import '../css/renderProjects.css';
+import { projects } from "./projectModule.js";
+import handleProjectInput from "./handleProjectInput.js";
+import addTodo from "./addTodo.js";
+import renderTodo from "./renderTodo.js";
+import deleteProject from "./deleteProject.js";
+import "../css/renderProjects.css";
 
 export default function renderProjects() {
-  const app = document.getElementById('app');
-  const formWrapper = document.createElement('div');
+  const app = document.getElementById("app");
+  const formWrapper = document.createElement("div");
   const { form } = handleProjectInput();
-  const projectWrapper = document.createElement('div');
-  projectWrapper.className = 'project-wrapper';
-  formWrapper.className = 'form-wrapper';
+  
+  const projectWrapper = document.createElement("div"); //contains the input form
+  projectWrapper.className = "project-wrapper";
+  formWrapper.className = "form-wrapper";
 
-  const button = document.createElement('button');
-    button.textContent = 'Add project';
-    button.addEventListener('click', () => {
-      editModal();
-  });
+  const addModal = document.createElement("dialog"); //modal for adding tasks in the project
+  document.body.append(addModal);
 
-  app.innerHTML = ''; //clears the contents everytime a new project is added to avoid duplication of projects
+  const button = document.createElement("button");
+  button.textContent = "Add project";
+
+  app.innerHTML = ""; //clears the contents everytime a new project is added to avoid duplication of projects
 
   projects.forEach((project, index) => {
-    const projectContainer = document.createElement('div');
-    projectContainer.className = 'project-container';
-
-    const iconsContainer = document.createElement('div'); 
-    iconsContainer.className = 'icons-container';
-
-    const deleteBtn = document.createElement('button'); 
+    const projectContainer = document.createElement("div");
+    const iconsContainer = document.createElement("div");
+    const deleteBtn = document.createElement("button");
+    
+    projectContainer.className = "project-container";
+    iconsContainer.className = "icons-container";
     deleteBtn.innerHTML = `<i class="fa-solid fa-trash"></i>`;
-    deleteBtn.addEventListener('click', () => { //delete project
-      deleteProject(projects, index)
+    deleteBtn.addEventListener("click", () => { //deletes project
+      deleteProject(projects, index);
     });
 
     iconsContainer.append(deleteBtn);
-  
+
     if (index === projects.length - 1) {
-      projectContainer.classList.add('active');
+      projectContainer.classList.add("active");
     }
-    
+
     const projectTitle = project.title;
     const projectDescription = project.description;
-  
-    const titleContainer = document.createElement('h1');
-    const descContainer = document.createElement('p');
+    const numOfTasks = project.todo;
+    const titleContainer = document.createElement("h1");
+    const descContainer = document.createElement("p");
+    const taskCounter = document.createElement('span');
+    const openProjectBtn = document.createElement('button');
+    
+    openProjectBtn.innerHTML = `<i class="fa-regular fa-folder-open"></i>`;
+    taskCounter.textContent = `"There are ${numOfTasks.length} tasks in this project"`;
     titleContainer.append(projectTitle);
     descContainer.textContent = projectDescription;
 
-    const addTaskInput = document.createElement('input');
-    const addTaskButton = document.createElement('button');
-    addTaskButton.textContent = 'Add Task';
+    formWrapper.appendChild(form, button);
+    projectContainer.append(iconsContainer, titleContainer, descContainer, taskCounter, openProjectBtn);
 
-    const ul = document.createElement('ul');
+    openProjectBtn.addEventListener("click", () => {
 
-    addTaskButton.addEventListener('click', () => {
-      addTodo(index, addTaskInput.value);
-      addTaskInput.value = ''; // Clear the input field
-      renderTodo(project, ul); // Pass project and ul to renderTodo
+      addModal.innerHTML = ""; // Clear previous content
+
+      const projectTitleInModal = document.createElement("h2");
+      const projectDescriptionInModal = document.createElement("p");
+      const addTaskInput = document.createElement("input");
+      const addTaskButton = document.createElement("button");
+      const closeModal = document.createElement("button");
+      const ul = document.createElement("ul");
+      
+      addTaskButton.textContent = "Add Task";
+      closeModal.textContent = 'Close';
+      closeModal.addEventListener('click', () => {
+        addModal.close();
+      })
+
+      addTaskButton.addEventListener("click", () => {
+        addTodo(index, addTaskInput.value);
+        addTaskInput.value = ""; // Clear the input field
+        renderTodo(project, ul); // Pass project and ul to renderTodo
+        renderProjects();
+      });
+
+      projectTitleInModal.textContent = projectTitle;
+      projectDescriptionInModal.textContent = projectDescription;
+      addModal.append(closeModal, projectTitleInModal, projectDescriptionInModal, addTaskInput, addTaskButton, ul);
+      addModal.showModal();
+      renderTodo(project, ul);
     });
 
-    renderTodo(project, ul); // Initialize the todo array on each project
-    // So every time a new project is added, the todo array will re-render on each project object
-    
-    formWrapper.appendChild(form, button);
-    projectContainer.append(iconsContainer, titleContainer, descContainer, addTaskInput, addTaskButton, ul);
     projectWrapper.appendChild(projectContainer);
     app.append(formWrapper, projectWrapper);
   });

@@ -7,7 +7,7 @@ export default function headerContent() {
     logo.src = logoImage;
     logo.alt = 'logoImage';
 
-    headerElement.textContent = 'Quester';
+    headerElement.textContent = 'Task-O\'-Matic';
 
     headerElement.appendChild(logo);
 
