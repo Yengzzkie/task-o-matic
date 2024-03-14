@@ -4,6 +4,7 @@ import addTodo from "./addTodo.js";
 import renderTodo from "./renderTodo.js";
 import deleteProject from "./deleteProject.js";
 import "../css/renderProjects.css";
+import viewProjectModal from "./viewProjectModal.js";
 
 export default function renderProjects() {
   const app = document.getElementById("app");
@@ -15,7 +16,6 @@ export default function renderProjects() {
   formWrapper.className = "form-wrapper";
 
   const addModal = document.createElement("dialog"); //modal for adding tasks in the project
-  document.body.append(addModal);
 
   const button = document.createElement("button");
   button.textContent = "Add project";
@@ -26,6 +26,7 @@ export default function renderProjects() {
     const projectContainer = document.createElement("div");
     const iconsContainer = document.createElement("div");
     const deleteBtn = document.createElement("button");
+    const openProjectBtn = document.createElement('button');
     
     projectContainer.className = "project-container";
     iconsContainer.className = "icons-container";
@@ -34,7 +35,7 @@ export default function renderProjects() {
       deleteProject(projects, index);
     });
 
-    iconsContainer.append(deleteBtn);
+    iconsContainer.append(openProjectBtn, deleteBtn);
 
     if (index === projects.length - 1) {
       projectContainer.classList.add("active");
@@ -46,7 +47,7 @@ export default function renderProjects() {
     const titleContainer = document.createElement("h1");
     const descContainer = document.createElement("p");
     const taskCounter = document.createElement('span');
-    const openProjectBtn = document.createElement('button');
+    
     
     openProjectBtn.innerHTML = `<i class="fa-regular fa-folder-open"></i>`;
     taskCounter.textContent = `"There are ${numOfTasks.length} tasks in this project"`;
@@ -54,40 +55,14 @@ export default function renderProjects() {
     descContainer.textContent = projectDescription;
 
     formWrapper.appendChild(form, button);
-    projectContainer.append(iconsContainer, titleContainer, descContainer, taskCounter, openProjectBtn);
+    projectContainer.append(iconsContainer, titleContainer, descContainer, taskCounter);
 
     openProjectBtn.addEventListener("click", () => {
-
-      addModal.innerHTML = ""; // Clear previous content
-
-      const projectTitleInModal = document.createElement("h2");
-      const projectDescriptionInModal = document.createElement("p");
-      const addTaskInput = document.createElement("input");
-      const addTaskButton = document.createElement("button");
-      const closeModal = document.createElement("button");
-      const ul = document.createElement("ul");
-      
-      addTaskButton.textContent = "Add Task";
-      closeModal.textContent = 'Close';
-      closeModal.addEventListener('click', () => {
-        addModal.close();
-      })
-
-      addTaskButton.addEventListener("click", () => {
-        addTodo(index, addTaskInput.value);
-        addTaskInput.value = ""; // Clear the input field
-        renderTodo(project, ul); // Pass project and ul to renderTodo
-        renderProjects();
-      });
-
-      projectTitleInModal.textContent = projectTitle;
-      projectDescriptionInModal.textContent = projectDescription;
-      addModal.append(closeModal, projectTitleInModal, projectDescriptionInModal, addTaskInput, addTaskButton, ul);
-      addModal.showModal();
-      renderTodo(project, ul);
+      viewProjectModal(project, index, projectTitle, projectDescription)
     });
-
     projectWrapper.appendChild(projectContainer);
-    app.append(formWrapper, projectWrapper);
+    app.append(formWrapper, projectWrapper, addModal);
   });
+
+  return { addModal };
 }

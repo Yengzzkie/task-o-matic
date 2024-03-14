@@ -38,6 +38,8 @@ export default function handleProjectInput() {
   }
 
   const projectDescInput = document.createElement("input");
+  const dateInput = document.createElement("input");
+  dateInput.type = 'date';
   const addButton = document.createElement("button");
   addButton.textContent = "Add Project";
 
@@ -48,7 +50,8 @@ export default function handleProjectInput() {
       dropdown.value !== placeholderOption.value &&
       projectDescInput.value !== ""
     ) {
-      addProject(dropdown.value, projectDescInput.value);
+      console.log(dateInput.value);
+      addProject(dropdown.value, projectDescInput.value, dateInput.value);
       renderProjects();
 
       dropdown.selectedIndex = placeholderOption.index;
@@ -59,7 +62,7 @@ export default function handleProjectInput() {
     }
   });
 
-  form.append(dropdown, projectDescInput, addButton);
+  form.append(dropdown, projectDescInput, dateInput, addButton);
 
   return { form };
 }
