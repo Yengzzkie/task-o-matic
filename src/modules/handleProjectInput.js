@@ -48,11 +48,12 @@ export default function handleProjectInput() {
       dropdown.value !== placeholderOption.value &&
       projectDescInput.value !== ""
     ) {
-      addProject(dropdown.value, projectDescInput.value, options.find(opt => opt.title === dropdown.value).image);
+      addProject(dropdown.value, projectDescInput.value);
       renderProjects();
 
       dropdown.selectedIndex = placeholderOption.index;
       projectDescInput.value = "";
+
     } else {
       warningModal();
     }

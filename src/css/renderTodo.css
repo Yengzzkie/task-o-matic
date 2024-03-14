@@ -1,7 +1,20 @@
 li {
+    display: flex;
+    align-items: first baseline;
+    justify-content: space-between;
     list-style: none;
+    max-width: 100%;
 }
 
-label {
-    margin-left: 10px;
+span {
+    max-width: 100%;
+    margin-left: 15px;
+    text-overflow: ellipsis;
 }
+
+.edit-button {
+    width: 30px;
+    cursor: pointer;
+}
+
+

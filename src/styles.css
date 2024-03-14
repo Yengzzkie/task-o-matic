@@ -1,6 +1,7 @@
 @import './css/handleProjectInput.css';
 @import './css/renderProjects.css';
 @import './css/warningModal.css';
+@import './css/renderTodo.css';
 @import './css/header.css';
 
 * {

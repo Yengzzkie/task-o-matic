@@ -8,6 +8,10 @@ export default function renderTodo(project, ul) {
   tasks.forEach((task) => {
     const li = document.createElement("li");
 
+    const editBtn = document.createElement('button');
+    editBtn.className = 'edit-button';
+    editBtn.innerHTML = `<i class="fa-solid fa-pen-to-square"></i>`;
+
     // Create a radio button
     const checkbox = document.createElement('input');
     checkbox.type = 'checkbox';
@@ -16,16 +20,15 @@ export default function renderTodo(project, ul) {
     checkbox.value = task; // Set the value of the radio button
 
     // Create a label for the radio button
-    const label = document.createElement('label');
-    label.textContent = task;
+    const span = document.createElement('span');
+    span.textContent = task;
 
     checkbox.addEventListener('change', function() {
-      label.style.textDecoration = this.checked ? 'line-through' : 'none';
+      span.style.textDecoration = this.checked ? 'line-through' : 'none';
     });
 
     // Append the radio button and label to the list item
-    li.appendChild(checkbox);
-    li.appendChild(label);
+    li.append(checkbox, span, editBtn);
 
     // Append the list item to the unordered list
     ul.appendChild(li);
