@@ -1,7 +1,5 @@
 import { projects } from "./projectModule.js";
 import handleProjectInput from "./handleProjectInput.js";
-import addTodo from "./addTodo.js";
-import renderTodo from "./renderTodo.js";
 import deleteProject from "./deleteProject.js";
 import "../css/renderProjects.css";
 import viewProjectModal from "./viewProjectModal.js";
@@ -43,23 +41,29 @@ export default function renderProjects() {
 
     const projectTitle = project.title;
     const projectDescription = project.description;
+    const projectDate = project.date;
     const numOfTasks = project.todo;
     const titleContainer = document.createElement("h1");
     const descContainer = document.createElement("p");
+    const dateContainer = document.createElement('span');
     const taskCounter = document.createElement('span');
+    const pinIcon = document.createElement('span');
     
-    
+    pinIcon.innerHTML = `<i class="fa-sharp fa-solid fa-map-pin"></i>`;
+    pinIcon.className = 'pin-icon';
+    dateContainer.className = 'due-date';
     openProjectBtn.innerHTML = `<i class="fa-regular fa-folder-open"></i>`;
-    taskCounter.textContent = `"There are ${numOfTasks.length} tasks in this project"`;
-    titleContainer.append(projectTitle);
+    taskCounter.innerHTML = numOfTasks.length > 0 ? `"There are ${numOfTasks.length} tasks in this project"` : `All tasks are cleared`;
+    titleContainer.textContent = projectTitle;
     descContainer.textContent = projectDescription;
-
-    formWrapper.appendChild(form, button);
-    projectContainer.append(iconsContainer, titleContainer, descContainer, taskCounter);
+    dateContainer.textContent = projectDate === undefined ? `Due date not set` : `Due date: ${projectDate}`;
 
     openProjectBtn.addEventListener("click", () => {
       viewProjectModal(project, index, projectTitle, projectDescription)
     });
+
+    formWrapper.appendChild(form, button);
+    projectContainer.append(pinIcon, iconsContainer, titleContainer, descContainer, taskCounter, dateContainer);
     projectWrapper.appendChild(projectContainer);
     app.append(formWrapper, projectWrapper, addModal);
   });
