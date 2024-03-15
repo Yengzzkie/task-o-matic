@@ -32,5 +32,4 @@ export default function viewProjectModal(project, index, projectTitle, projectDe
       addModal.append(closeModal, projectTitleInModal, projectDescriptionInModal, addTaskInput, addTaskButton, ul);
       addModal.showModal();
       renderTodo(project, ul);
-      console.log(projectTitle)
 }

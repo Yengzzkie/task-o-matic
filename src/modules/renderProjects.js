@@ -8,7 +8,7 @@ export default function renderProjects() {
   const app = document.getElementById("app");
   const formWrapper = document.createElement("div");
   const { form } = handleProjectInput();
-  
+
   const projectWrapper = document.createElement("div"); //contains the input form
   projectWrapper.className = "project-wrapper";
   formWrapper.className = "form-wrapper";
@@ -54,9 +54,9 @@ export default function renderProjects() {
     dateContainer.className = 'due-date';
     openProjectBtn.innerHTML = `<i class="fa-regular fa-folder-open"></i>`;
     taskCounter.innerHTML = numOfTasks.length > 0 ? `"There are ${numOfTasks.length} tasks in this project"` : `All tasks are cleared`;
-    titleContainer.textContent = projectTitle;
+    titleContainer.append(projectTitle);
     descContainer.textContent = projectDescription;
-    dateContainer.textContent = projectDate === undefined ? `Due date not set` : `Due date: ${projectDate}`;
+    dateContainer.textContent = !projectDate ? `Due date not set` : `Due date: ${projectDate}`;
 
     openProjectBtn.addEventListener("click", () => {
       viewProjectModal(project, index, projectTitle, projectDescription)

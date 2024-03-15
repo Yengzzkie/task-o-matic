@@ -6,6 +6,7 @@ import "../css/handleProjectInput.css";
 //importing images
 import workPNG from '../assets/book.png';
 
+
 export default function handleProjectInput() {
   const form = document.createElement("form");
 
