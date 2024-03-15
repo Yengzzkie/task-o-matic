@@ -54,7 +54,6 @@
     button {
         border: none;
         border-radius: 5px;
-        /* width: 70px; */
         padding: 5px;
         margin: 10px;
     }
@@ -75,7 +74,8 @@
         }
 
         button:hover {
-            background: rgb(104, 255, 10);
+            background: red;
+            color: #fff;
         }
     }
 }

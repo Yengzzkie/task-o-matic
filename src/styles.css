@@ -45,8 +45,7 @@ button {
 }
 
 button:hover {
-    background: var(--neon-green);
-    color: var(--button-bg);
+    background: red;
 }
 
 button:active {

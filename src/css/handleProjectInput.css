@@ -5,6 +5,15 @@ select {
 
 dialog {
     padding: 20px 30px;
+
+    .close-modal {
+        /* background: red; */
+        position: absolute;
+        top: 5%;
+        right: 5%;
+        width: 30px;
+    }
+
 }
 
 .form-wrapper {

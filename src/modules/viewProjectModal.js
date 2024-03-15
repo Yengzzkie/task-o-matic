@@ -15,7 +15,8 @@ export default function viewProjectModal(project, index, projectTitle, projectDe
       const ul = document.createElement("ul");
       
       addTaskButton.textContent = "Add Task";
-      closeModal.textContent = 'Close';
+      closeModal.innerHTML = '<i class="fa-sharp fa-solid fa-xmark"></i>';
+      closeModal.className = 'close-modal';
       closeModal.addEventListener('click', () => {
         addModal.close();
       })
