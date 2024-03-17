@@ -1,5 +1,5 @@
 select {
-    border: none;
+    border: 1px solid black;
     padding: 5px;
 }
 
@@ -17,17 +17,16 @@ dialog {
 }
 
 .form-wrapper {
-    position: relative;
-    left: 0;
-    top: 0;
-    box-shadow: .3rem 0 .5rem rgb(230, 230, 230);
+    grid-column: 1 / 2; 
+    border-right: 1px solid gray;
+    /* box-shadow: .3rem 0 .5rem rgb(230, 230, 230); */
     height: calc(100vh - var(--header-height));
     width: 250px;
     padding: 30px 20px;
+    z-index: 2;
 }
 
 form {
-    grid-column: 1 / 2;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -45,6 +44,7 @@ form {
     .form-wrapper {
         width: 100%;
         height: auto;
+        box-shadow: 0 6px .5rem rgb(230, 230, 230);
     }
 
     form input {

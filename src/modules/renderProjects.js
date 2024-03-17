@@ -6,12 +6,12 @@ import viewProjectModal from "./viewProjectModal.js";
 
 export default function renderProjects() {
   const app = document.getElementById("app");
-  const formWrapper = document.createElement("div");
-  const { form } = handleProjectInput();
+  // const formWrapper = document.createElement("div");
+  // const { form } = handleProjectInput();
 
   const projectWrapper = document.createElement("div"); //contains the input form
   projectWrapper.className = "project-wrapper";
-  formWrapper.className = "form-wrapper";
+  // formWrapper.className = "form-wrapper";
 
   const addModal = document.createElement("dialog"); //modal for adding tasks in the project
 
@@ -39,6 +39,9 @@ export default function renderProjects() {
       projectContainer.classList.add("active");
     }
 
+    const projectImage = new Image();
+    projectImage.src = project.image;
+
     const projectTitle = project.title;
     const projectDescription = project.description;
     const projectDate = project.date;
@@ -53,20 +56,31 @@ export default function renderProjects() {
     pinIcon.className = 'pin-icon';
     dateContainer.className = 'due-date';
     openProjectBtn.innerHTML = `<i class="fa-regular fa-folder-open"></i>`;
-    taskCounter.innerHTML = numOfTasks.length > 0 ? `"There are ${numOfTasks.length} tasks in this project"` : `All tasks are cleared`;
-    titleContainer.append(projectTitle);
+    taskCounter.innerHTML = numOfTasks.length > 0 ? `"You have ${numOfTasks.length} tasks in this project"` : `All tasks are cleared`;
+    titleContainer.append(projectTitle, projectImage);
     descContainer.textContent = projectDescription;
     dateContainer.textContent = !projectDate ? `Due date not set` : `Due date: ${projectDate}`;
-
+// *****************EXPERIMENTAL**************************
     openProjectBtn.addEventListener("click", () => {
-      viewProjectModal(project, index, projectTitle, projectDescription)
-    });
 
-    formWrapper.appendChild(form, button);
+      const backBtn = document.createElement('button');
+      backBtn.textContent = 'Back';
+      backBtn.addEventListener('click', () => {
+        projectWrapper.innerHTML = '';
+        renderProjects();
+      })
+
+      projectWrapper.innerHTML = '';
+      projectWrapper.append(project.todo, backBtn);
+      
+      // viewProjectModal(project, index, projectTitle, projectDescription)
+    });
+// *****************EXPERIMENTAL**************************
+    // formWrapper.appendChild(form, button);
     projectContainer.append(pinIcon, iconsContainer, titleContainer, descContainer, taskCounter, dateContainer);
     projectWrapper.appendChild(projectContainer);
-    app.append(formWrapper, projectWrapper, addModal);
+    app.append(projectWrapper, addModal);
   });
 
-  return { addModal };
+  return projectWrapper;
 }

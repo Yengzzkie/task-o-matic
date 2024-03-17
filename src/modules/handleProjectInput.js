@@ -3,24 +3,20 @@ import renderProjects from "./renderProjects.js";
 import warningModal from "./warningModal.js";
 import "../css/handleProjectInput.css";
 
-//importing images
-import workPNG from '../assets/book.png';
-
-
 export default function handleProjectInput() {
   const form = document.createElement("form");
 
   const dropdown = document.createElement("select");
   const options = [
-    { title: "Personal", image: workPNG },
-    { title: "Work", image: workPNG },
-    { title: "Study", image: workPNG },
-    { title: "Health", image: workPNG },
-    { title: "Social", image: workPNG },
-    { title: "Hobbies", image: workPNG },
-    { title: "Finance", image: workPNG },
-    { title: "Groceries", image: workPNG },
-    { title: "Others", image: workPNG }
+    { title: "Personal"},
+    { title: "Work"},
+    { title: "Study"},
+    { title: "Health"},
+    { title: "Social"},
+    { title: "Hobbies"},
+    { title: "Finance"},
+    { title: "Groceries"},
+    { title: "Others"}
   ];
 
   const placeholderOption = document.createElement("option");

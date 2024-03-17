@@ -1,15 +1,28 @@
-import logoImage from '../assets/todo-favicon.png';
-
 export default function headerContent() {
-    const headerElement = document.createElement('h1');
+    const header = document.querySelector('header');
+    const headerElement = document.createElement('div');
+    const headerTitle = document.createElement('h1');
+    const hamburger = document.createElement('span');
+    const close = document.createElement('p');
 
-    const logo = new Image();
-    logo.src = logoImage;
-    logo.alt = 'logoImage';
+    hamburger.className = 'open-button';
+    close.className = 'close-button';
+    hamburger.innerHTML = `<i class="fa-solid fa-burger"></i>`;
+    close.innerHTML = `<i class="fa-solid fa-angles-left"></i>`;
+    
+    hamburger.addEventListener('click', () => {
+        header.classList.add('close');
+    })
 
-    headerElement.textContent = 'Task-O\'-Matic';
+    close.addEventListener('click', () => {
+        header.classList.remove('close');
+    })
+    
+    headerTitle.textContent = 'Task-O\'-Matic';
 
-    headerElement.appendChild(logo);
+    headerElement.append(headerTitle, hamburger, close)
+
+
 
     return { headerElement };
 }
