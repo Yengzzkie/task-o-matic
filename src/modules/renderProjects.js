@@ -3,6 +3,7 @@ import "../css/renderProjects.css";
 import renderTodo from "./renderTodo.js";
 
 export default function renderProjects() {
+  
   const app = document.getElementById("app");
 
   const projectWrapper = document.createElement("div"); //contains the input form

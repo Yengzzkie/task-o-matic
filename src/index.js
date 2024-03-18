@@ -10,7 +10,6 @@ function render() {
     header.append(headerElement);
 }
 
-
 function updateContent(newContent) {
     const app = document.getElementById('app');
     app.innerHTML = '';
