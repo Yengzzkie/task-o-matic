@@ -40,10 +40,7 @@ export default function renderTodo(index) {
       const storedProjectsJSON = localStorage.getItem('projects');
       if (storedProjectsJSON) {
           return JSON.parse(storedProjectsJSON);
-      } else {
-          // Return a default value if no projects are stored in localStorage
-          return [];
-      }
+      } 
   }
 
     function addTask() {
