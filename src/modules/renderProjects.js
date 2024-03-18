@@ -1,19 +1,12 @@
 import { projects } from "./projectModule.js";
-import handleProjectInput from "./handleProjectInput.js";
-import deleteProject from "./deleteProject.js";
 import "../css/renderProjects.css";
-import viewProjectModal from "./viewProjectModal.js";
+import renderTodo from "./renderTodo.js";
 
 export default function renderProjects() {
   const app = document.getElementById("app");
-  // const formWrapper = document.createElement("div");
-  // const { form } = handleProjectInput();
 
   const projectWrapper = document.createElement("div"); //contains the input form
   projectWrapper.className = "project-wrapper";
-  // formWrapper.className = "form-wrapper";
-
-  const addModal = document.createElement("dialog"); //modal for adding tasks in the project
 
   const button = document.createElement("button");
   button.textContent = "Add project";
@@ -23,17 +16,12 @@ export default function renderProjects() {
   projects.forEach((project, index) => {
     const projectContainer = document.createElement("div");
     const iconsContainer = document.createElement("div");
-    const deleteBtn = document.createElement("button");
     const openProjectBtn = document.createElement('button');
     
     projectContainer.className = "project-container";
     iconsContainer.className = "icons-container";
-    deleteBtn.innerHTML = `<i class="fa-solid fa-trash"></i>`;
-    deleteBtn.addEventListener("click", () => { //deletes project
-      deleteProject(projects, index);
-    });
 
-    iconsContainer.append(openProjectBtn, deleteBtn);
+    iconsContainer.append(openProjectBtn);
 
     if (index === projects.length - 1) {
       projectContainer.classList.add("active");
@@ -60,26 +48,21 @@ export default function renderProjects() {
     titleContainer.append(projectTitle, projectImage);
     descContainer.textContent = projectDescription;
     dateContainer.textContent = !projectDate ? `Due date not set` : `Due date: ${projectDate}`;
-// *****************EXPERIMENTAL**************************
+    // *****************EXPERIMENTAL**************************
     openProjectBtn.addEventListener("click", () => {
+      const projectIndex = index; // Capture the current project index
+      const ul = document.createElement('ul');
 
-      const backBtn = document.createElement('button');
-      backBtn.textContent = 'Back';
-      backBtn.addEventListener('click', () => {
-        projectWrapper.innerHTML = '';
-        renderProjects();
-      })
-
-      projectWrapper.innerHTML = '';
-      projectWrapper.append(project.todo, backBtn);
-      
-      // viewProjectModal(project, index, projectTitle, projectDescription)
+      renderTodo(projectIndex);
+      ul.append(addTodoBtn, backBtn)
+      app.innerHTML = '';
+      app.append(ul);
     });
 // *****************EXPERIMENTAL**************************
-    // formWrapper.appendChild(form, button);
+
     projectContainer.append(pinIcon, iconsContainer, titleContainer, descContainer, taskCounter, dateContainer);
     projectWrapper.appendChild(projectContainer);
-    app.append(projectWrapper, addModal);
+    app.append(projectWrapper);
   });
 
   return projectWrapper;

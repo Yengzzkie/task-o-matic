@@ -1,36 +1,63 @@
 import '../css/renderTodo.css';
+import renderProjects from './renderProjects.js';
+import { projects } from './projectModule.js';
 
-export default function renderTodo(project, ul) {
-  ul.innerHTML = ""; // Clear the previous todo content
+export default function renderTodo(index) {
 
-  const tasks = project.todo;
+    const project = projects[index]; //get the index of the projects
 
-  tasks.forEach((task) => {
-    const li = document.createElement("li");
+    const app = document.getElementById('app');
+    const inputModal = document.createElement('dialog')
+    const todoContainer = document.createElement('div');
+    const todoInput = document.createElement('input');
+    const addTodoBtn = document.createElement('button');
+    const closeModalBtn = document.createElement('button');
+    const openModalBtn = document.createElement('button');
+    const backBtn = document.createElement('button');
+    const ul = document.createElement('ul');
 
-    const editBtn = document.createElement('button');
-    editBtn.className = 'edit-button';
-    editBtn.innerHTML = `<i class="fa-solid fa-pen-to-square"></i>`;
+    addTodoBtn.textContent = 'Add Task';
+    closeModalBtn.textContent = 'Cancel';
+    todoContainer.className = 'todo-container';
+    openModalBtn.innerHTML = '<i class="fa-solid fa-pencil"></i>'
+    openModalBtn.setAttribute('id', 'add-task');
+    backBtn.textContent = 'Back';
+    backBtn.className = 'back-btn'
 
-    // Create a radio button
-    const checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    checkbox.name = 'todo'; // Set a common name for the radio buttons in the same group
-    checkbox.className = 'checkbox';
-    checkbox.value = task; // Set the value of the radio button
+    openModalBtn.addEventListener('click', () => {
+      inputModal.showModal();
+    })
 
-    // Create a label for the radio button
-    const span = document.createElement('span');
-    span.textContent = task;
+    closeModalBtn.addEventListener('click', () => {
+      inputModal.close();
+    })
 
-    checkbox.addEventListener('change', function() {
-      span.style.textDecoration = this.checked ? 'line-through' : 'none';
+    addTodoBtn.addEventListener('click', addTask);
+
+    function addTask() {
+      const todoInputValue = todoInput.value;
+      project.todo.push(todoInputValue); 
+      renderTodo(index);
+      console.log('New task added') //adds new tasks inside the project
+      console.log(project.todo);
+    }
+
+    backBtn.addEventListener('click', () => {
+      renderProjects();
+    }); //re-renders the projects when the back button is clicked
+  
+    // Clear the existing content in the app element
+    app.innerHTML = '';
+
+    // Iterate through the todo array of the project and create list items for each todo
+    project.todo.forEach(todoItem => {
+        const li = document.createElement('li');
+        li.textContent = todoItem;
+        ul.append(li);
     });
 
-    // Append the radio button and label to the list item
-    li.append(checkbox, span, editBtn);
-
-    // Append the list item to the unordered list
-    ul.appendChild(li);
-  });
+    // Append the unordered list to the app element
+    inputModal.append(todoInput, addTodoBtn, closeModalBtn)
+    todoContainer.append(ul, openModalBtn, backBtn)
+    app.append(todoContainer, inputModal);
 }

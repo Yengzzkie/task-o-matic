@@ -8,11 +8,6 @@ function render() {
     const header = document.querySelector('header');
     const { headerElement } = headerContent();
     header.append(headerElement);
-
-    // renderProjects(); //callback to render the projects
-    // const app = document.getElementById('app');
-    // const { hero } = homeContent();
-    // app.append(hero);
 }
 
 
