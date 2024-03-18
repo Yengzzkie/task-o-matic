@@ -30,6 +30,12 @@ header {
     nav {
         display: flex;
         flex-direction: column;
+
+        button {
+            letter-spacing: 5px;
+            width: 130px;
+            border-radius: 0;
+        }
     }
 }
 
@@ -42,21 +48,13 @@ h1 {
     
 }
 
-/* @keyframes bounce {
-    from {
-        transform: translateX(-5px);
-    }
-    to {
-        transform: translateX(5px);
-    }
-} */
 
 @media screen and (max-width: 1024px) {
     header {
         position: fixed;
         background: hsla(60, 100%, 80%, 0.582);
         backdrop-filter: blur(10px);
-        width: 300px;
+        width: 250px;
         height: 100vh;
         transform: translateX(-100%);
         transition: transform .4s ease-out;

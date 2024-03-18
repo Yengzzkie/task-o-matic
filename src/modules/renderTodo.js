@@ -40,7 +40,10 @@ export default function renderTodo(index) {
       const storedProjectsJSON = localStorage.getItem('projects');
       if (storedProjectsJSON) {
           return JSON.parse(storedProjectsJSON);
-      } 
+      } else {
+          // Return a default value if no projects are stored in localStorage
+          return [{title: "Personal", description: "Personal stuff", image: personalPNG, todo: ["something personal", "Test 1"]}, {title: "Work", description: "Go to work", image: workPNG, todo: ["test 2"]}, {title: "Study", description: "Read some books", image: readPNG, todo: []}, {title: "Health", description: "Healthy Living", image: healthPNG, todo: []}, {title: "Social", description: "Anything about socializing", image: socialPNG, todo: []}, {title: "Hobbies", description: "Anything about hobbies", image: hobbiesPNG, todo: []}, {title: "Finance", description: "All about money", image: financePNG, todo: []}, {title: "Grocery", description: "Stock up those shelves", image: groceryPNG, todo: []}, {title: "Other", description: "Other stuff you may think of", image: otherPNG, todo: []}];
+      }
   }
 
     function addTask() {
@@ -68,7 +71,6 @@ export default function renderTodo(index) {
 
     //initialize the load function upon pushing a new task to the projects stored from the local storage
     loadProjectsFromLocalStorage();
-    console.log(projects)
 
     // Append the unordered list to the app element
     inputModal.append(todoInput, addTodoBtn, closeModalBtn)

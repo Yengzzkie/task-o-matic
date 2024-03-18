@@ -9,6 +9,8 @@ export default function headerContent() {
     close.className = 'close-button';
     hamburger.innerHTML = `<i class="fa-solid fa-burger"></i>`;
     close.innerHTML = `<i class="fa-solid fa-angles-left"></i>`;
+
+    headerTitle.textContent = 'Task-O\'-Matic';
     
     hamburger.addEventListener('click', () => {
         header.classList.add('close');
@@ -17,8 +19,6 @@ export default function headerContent() {
     close.addEventListener('click', () => {
         header.classList.remove('close');
     })
-    
-    headerTitle.textContent = 'Task-O\'-Matic';
 
     headerElement.append(headerTitle, hamburger, close)
 
