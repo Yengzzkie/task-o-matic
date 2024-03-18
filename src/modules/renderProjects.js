@@ -3,7 +3,9 @@ import "../css/renderProjects.css";
 import renderTodo from "./renderTodo.js";
 
 export default function renderProjects() {
-  
+  const projectsJSON = localStorage.getItem('projects'); //get the stored object from the local storage
+  const projects = JSON.parse(projectsJSON); //and assign the new value to 'projects' variable
+
   const app = document.getElementById("app");
 
   const projectWrapper = document.createElement("div"); //contains the input form

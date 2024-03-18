@@ -71,6 +71,7 @@ export default function renderTodo(index) {
 
     //initialize the load function upon pushing a new task to the projects stored from the local storage
     loadProjectsFromLocalStorage();
+    console.log(projects)
 
     // Append the unordered list to the app element
     inputModal.append(todoInput, addTodoBtn, closeModalBtn)
