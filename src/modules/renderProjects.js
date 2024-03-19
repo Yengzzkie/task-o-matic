@@ -1,10 +1,24 @@
-import { projects } from "./projectModule.js";
+// import { projects } from "./projectModule.js";
 import "../css/renderProjects.css";
 import renderTodo from "./renderTodo.js";
+import personalPNG from '../assets/personal.png';
+import readPNG from '../assets/book.png';
+import workPNG from '../assets/work.png';
+import healthPNG from '../assets/health.png';
+import socialPNG from '../assets/social.png';
+import hobbiesPNG from '../assets/hobby.png';
+import financePNG from '../assets/finance.png';
+import groceryPNG from '../assets/grocery.png';
+import otherPNG from '../assets/other.png';
 
 export default function renderProjects() {
-  const projectsJSON = localStorage.getItem('projects'); //get the stored object from the local storage
-  const projects = JSON.parse(projectsJSON); //and assign the new value to 'projects' variable
+  let projects = [{title: "Personal", description: "Personal stuff", image: personalPNG, todo: ["something personal", "Test 1"]}, {title: "Work", description: "Go to work", image: workPNG, todo: ["test 2"]}, {title: "Study", description: "Read some books", image: readPNG, todo: []}, {title: "Health", description: "Healthy Living", image: healthPNG, todo: []}, {title: "Social", description: "Anything about socializing", image: socialPNG, todo: []}, {title: "Hobbies", description: "Anything about hobbies", image: hobbiesPNG, todo: []}, {title: "Finance", description: "All about money", image: financePNG, todo: []}, {title: "Grocery", description: "Stock up those shelves", image: groceryPNG, todo: []}, {title: "Other", description: "Other stuff you may think of", image: otherPNG, todo: []}];
+
+  if (!projects) {
+    // If not, use the initial projects array and set it in localStorage
+    projects = [{title: "Personal", description: "Personal stuff", image: personalPNG, todo: ["something personal", "Test 1"]}, {title: "Work", description: "Go to work", image: workPNG, todo: ["test 2"]}, {title: "Study", description: "Read some books", image: readPNG, todo: []}, {title: "Health", description: "Healthy Living", image: healthPNG, todo: []}, {title: "Social", description: "Anything about socializing", image: socialPNG, todo: []}, {title: "Hobbies", description: "Anything about hobbies", image: hobbiesPNG, todo: []}, {title: "Finance", description: "All about money", image: financePNG, todo: []}, {title: "Grocery", description: "Stock up those shelves", image: groceryPNG, todo: []}, {title: "Other", description: "Other stuff you may think of", image: otherPNG, todo: []}];
+    localStorage.setItem('projects', JSON.stringify(projects));
+  }
 
   const app = document.getElementById("app");
 
