@@ -35,6 +35,7 @@ body {
     display: flex;
     justify-content: center;
     overflow-y: auto;
+    letter-spacing: 2px;
     width: 100%;
     height: 100vh;
     padding: 50px;
@@ -72,5 +73,6 @@ input {
 
     #app {
         flex-direction: column;
+        padding: 10px;
     }
 }
