@@ -1,4 +1,3 @@
-import handleProjectInput from './modules/handleProjectInput.js';
 import renderProjects from './modules/renderProjects.js';
 import headerContent from './modules/header.js';
 import homeContent from './modules/homeContent.js';

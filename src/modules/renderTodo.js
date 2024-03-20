@@ -25,7 +25,7 @@ export default function renderTodo(index) {
     todoContainer.className = 'todo-container';
     openModalBtn.innerHTML = '<i class="fa-solid fa-pencil"></i>'
     openModalBtn.setAttribute('id', 'add-task');
-    backBtn.textContent = 'Back';
+    backBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
     backBtn.className = 'back-btn'
 
     openModalBtn.addEventListener('click', () => {
@@ -49,10 +49,7 @@ export default function renderTodo(index) {
     console.log("Projects stored in localStorage:", localStorage.getItem('projects')); // Log the projects stored in localStorage
     renderTodo(index); //then re-render the array by calling renderTodo function which contains the loadProjectsFromLocalStorage() function
     console.log('New task added') //adds new tasks inside the project
-    console.log(projectsJSON)
   }
-  
-
     backBtn.addEventListener('click', () => {
       renderProjects();
     }); //re-renders the projects when the back button is clicked
@@ -61,9 +58,38 @@ export default function renderTodo(index) {
     app.innerHTML = '';
     
     // Iterate through the todo array of the project and create list items for each todo
-    tasks.forEach(todoItem => {
+    tasks.forEach((todoItem, index) => {
         const li = document.createElement('li');
+        const deleteBtn = document.createElement('button');
+        const taskToDelete = tasks[index]
+
+        deleteBtn.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
         li.textContent = todoItem;
+
+        function removeTask(taskIndex) {
+          tasks.splice(taskIndex, 1); // Remove the task from the tasks array
+          project.todo = tasks; // Update the project's todo array with the updated tasks
+          localStorage.setItem('projects', JSON.stringify(projects)); // Update localStorage with the updated projects
+      
+          // Remove the task's corresponding list item from the DOM
+          ul.removeChild(ul.childNodes[taskIndex]);
+      
+          // If there are no more tasks, remove the dialog element and re-render only the current project
+          if (tasks.length === 0) {
+              inputModal.close(); // Close the dialog
+              inputModal.remove(); // Remove the dialog element from the DOM
+              renderProjects(); // Re-render only the current project
+          }
+      }
+      
+      // Inside the forEach loop where you create delete buttons for each task
+      deleteBtn.addEventListener('click', () => {
+          const taskIndex = tasks.indexOf(todoItem); // Find the index of the task to remove
+          removeTask(taskIndex); // Call the removeTask function with the index to remove
+      });
+      
+
+        li.append(deleteBtn);
         ul.append(li);
     });
 

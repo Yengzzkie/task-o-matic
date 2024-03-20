@@ -2,24 +2,24 @@ li {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    border-radius: 10px;
+    box-shadow: var(--dropshadow);
     list-style: none;
     max-width: 100%;
+    padding: 15px;
+    margin-top: 15px;
 
     button {
         width: 30px;
         cursor: pointer;
     }
 }
-
-#add-task {
-    position: absolute;
-    bottom: 8%;
-    right: 7%;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    filter: drop-shadow(2px 3px 2px rgb(152, 152, 152))
-}
+/* 
+li::after {
+    content: '';
+    border-bottom: 1px dotted black;
+    width: 100%;
+} */
 
 span {
     max-width: 100%;
@@ -30,12 +30,57 @@ span {
     box-shadow: 0 0.5rem 1rem #ccc;
     width: 100%;
     height: 100%;
+    margin-top: 30px;
     padding: 20px;
+
+    button:hover {
+        transform: scale(.5rem);
+    }
+
+    #add-task {
+        position: absolute;
+        bottom: 5%;
+        right: 7%;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        filter: drop-shadow(var(--dropshadow));
+    }
+
+    .back-btn {
+        position: absolute;
+        top: 3%;
+        right: 0;
+        border-radius: 50%;
+        filter: drop-shadow(2px 3px 2px rgb(152, 152, 152));
+        width: 40px;
+        height: 40px;
+        padding: 0;
+    }
 }
 
-.back-btn {
-    position: absolute;
-    top: 5%;
-    right: 5%;
+dialog {
+    border-radius: 5px;
+    border: none;
+    height: 150px;
+    margin: auto;
+    padding: 15px;
+    animation: scaleUp .3s;
+}
+
+dialog::backdrop {
+    backdrop-filter: blur(5px);
+}
+
+@keyframes scaleUp {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 

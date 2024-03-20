@@ -1,7 +1,7 @@
 .project-container {
     position: relative;
     background: #ffffff;
-    box-shadow: 0 .5rem .8rem gray;
+    box-shadow: 0 0rem .8rem #afafaf;
     border-radius: 10px;
     width: 100%;
     max-height: 300px;

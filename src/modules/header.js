@@ -13,12 +13,15 @@ export default function headerContent() {
     headerTitle.textContent = 'Task-O\'-Matic';
     
     hamburger.addEventListener('click', () => {
-        header.classList.add('close');
+        header.classList.add('open');
     })
 
-    close.addEventListener('click', () => {
-        header.classList.remove('close');
-    })
+    close.addEventListener('click', closeNavbar)
+
+
+    function closeNavbar() {
+        header.classList.remove('open');
+    }
 
     headerElement.append(headerTitle, hamburger, close)
 

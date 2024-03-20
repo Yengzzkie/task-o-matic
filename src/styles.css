@@ -1,6 +1,5 @@
 @import './css/handleProjectInput.css';
 @import './css/renderProjects.css';
-@import './css/warningModal.css';
 @import './css/renderTodo.css';
 @import './css/header.css';
 @import './css/homeContent.css';
@@ -12,6 +11,7 @@
     --neon-green: rgb(104, 255, 10);
     --button-bg: #2e2e2e;
     --header-height: 85px;
+    --dropshadow: 2px 3px 2px rgb(152, 152, 152);
 }
 
 * {
@@ -73,6 +73,6 @@ input {
 
     #app {
         flex-direction: column;
-        padding: 10px;
+        padding: 20px;
     }
 }
