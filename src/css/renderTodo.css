@@ -14,12 +14,6 @@ li {
         cursor: pointer;
     }
 }
-/* 
-li::after {
-    content: '';
-    border-bottom: 1px dotted black;
-    width: 100%;
-} */
 
 span {
     max-width: 100%;
