@@ -9,16 +9,30 @@ header {
     align-items: center;
     justify-content: space-between;
     background: #ffff8794;
-    font-family: 'kalam', sans-serif;
+    font-family: "IBM Plex Sans", sans-serif;
+    font-style: normal;
     height: 100vh;
     width: 300px;
     text-align: center;
     padding: 15px;
     z-index: 2;
 
+    h1 {
+        position: absolute;
+        top: 2%;
+        left: 2%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        font-size: 1.3rem;
+        font-weight: 200;
+        margin: 20px 10px;
+        
+    }
+
     .open-button {
         display: none;
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         transform: translateX(-50%);
         animation: bounce .5s infinite linear;
     }
@@ -30,23 +44,32 @@ header {
     nav {
         display: flex;
         flex-direction: column;
+        width: 100%;
+        margin-top: 80px;
 
         button {
-            letter-spacing: 5px;
-            width: 130px;
+            display: flex;
+            background: transparent;
+            color: var(--button-bg);
             border-radius: 0;
+            letter-spacing: 4px;
+            width: 100%;
+            padding-left: 15px;
         }
+
+        button:hover {
+            background: var(--button-bg);
+            color: #fff;
+        }
+    }
+
+    footer {
+        position: fixed;
+        bottom: 3%;
     }
 }
 
-h1 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 1.5rem;
-    margin-top: 20px;
-    
-}
+
 
 
 @media screen and (max-width: 1024px) {

@@ -19,11 +19,13 @@ function updateContent(newContent) {
 }
 
 const homeBtn = document.getElementById('home');
+homeBtn.innerHTML = `<i class="fa-solid fa-house"></i> Home`;
 homeBtn.addEventListener('click', () => {
     updateContent(homeContent())
 })
 
 const notesBtn = document.getElementById('notes');
+notesBtn.innerHTML = `<i class="fa-solid fa-align-left"></i> My Notes`;
 notesBtn.addEventListener('click', () => {
     updateContent(renderProjects())
 })

@@ -1,18 +1,27 @@
 .hero {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
 
-    img {
-        margin: 5cap;
-        width: 400px;
-    }
+  h1 {
+    font-family: "", sans-serif;
+    font-family: "IBM Plex Sans", sans-serif;
+    font-style: normal;
+    font-size: 3rem;
+    font-weight: 200;
+    margin-bottom: 20px;
+  }
+
+  img {
+    margin: 5cap;
+    width: 400px;
+  }
 }
 
 @media screen and (max-width: 1024px) {
-    .hero img {
-        width: 250px;
-    }
+  .hero img {
+    width: 250px;
+  }
 }

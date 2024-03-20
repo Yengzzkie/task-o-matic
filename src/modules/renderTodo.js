@@ -11,22 +11,25 @@ export default function renderTodo(index) {
     const app = document.getElementById('app');
     const inputModal = document.createElement('dialog')
     const todoContainer = document.createElement('div');
-    const todoInput = document.createElement('input');
+    const todoInput = document.createElement('textarea');
     const addTodoBtn = document.createElement('button');
     const closeModalBtn = document.createElement('button');
     const openModalBtn = document.createElement('button');
     const backBtn = document.createElement('button');
     const ul = document.createElement('ul');
+    const categoryTitle = document.createElement('h1');
     const tasks = project.todo;
 
     //this block below are the variable text assignment, separating them from the variables to avoid confusion
+    inputModal.className = 'input-modal';
     addTodoBtn.textContent = 'Add Task';
     closeModalBtn.textContent = 'Cancel';
     todoContainer.className = 'todo-container';
-    openModalBtn.innerHTML = '<i class="fa-solid fa-pencil"></i>'
+    openModalBtn.innerHTML = '<span class="material-symbols-outlined">add_notes</span>';
     openModalBtn.setAttribute('id', 'add-task');
     backBtn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
     backBtn.className = 'back-btn'
+    categoryTitle.innerHTML = `${project.title} Notes <span class="material-symbols-outlined">menu_book</span>`;
 
     openModalBtn.addEventListener('click', () => {
       inputModal.showModal();
@@ -54,23 +57,31 @@ export default function renderTodo(index) {
       renderProjects();
     }); //re-renders the projects when the back button is clicked
   
-    // Clear the existing content in the app element
+    // Clear the existing content in the app element to prevent duplicating of contents on re-render
     app.innerHTML = '';
     
     // Iterate through the todo array of the project and create list items for each todo
     tasks.forEach((todoItem, index) => {
         const li = document.createElement('li');
+        const deleteModal = document.createElement('dialog');
+        const buttonWrapper = document.createElement('div');
+        const openDeleteModalBtn = document.createElement('button');
         const deleteBtn = document.createElement('button');
+        const cancelBtn = document.createElement('button');
+        const deleteModalConfirmation = document.createElement('span');
         const taskToDelete = tasks[index]
 
-        deleteBtn.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
+        openDeleteModalBtn.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
+        deleteBtn.innerHTML = 'Confirm';
+        cancelBtn.textContent = 'Cancel';
+        deleteModalConfirmation.textContent = 'Are you done with this task?';
         li.textContent = todoItem;
 
         function removeTask(taskIndex) {
           tasks.splice(taskIndex, 1); // Remove the task from the tasks array
           project.todo = tasks; // Update the project's todo array with the updated tasks
           localStorage.setItem('projects', JSON.stringify(projects)); // Update localStorage with the updated projects
-      
+
           // Remove the task's corresponding list item from the DOM
           ul.removeChild(ul.childNodes[taskIndex]);
       
@@ -81,20 +92,29 @@ export default function renderTodo(index) {
               renderProjects(); // Re-render only the current project
           }
       }
+
+      openDeleteModalBtn.addEventListener('click', () => { //opens the delete confirmation modal
+        deleteModal.showModal();
+      })
+
+      cancelBtn.addEventListener('click', () => { //closes the delete confirmation modal
+        deleteModal.close();
+      })
       
-      // Inside the forEach loop where you create delete buttons for each task
+      // Inside the forEach loop to create delete buttons for each task
       deleteBtn.addEventListener('click', () => {
           const taskIndex = tasks.indexOf(todoItem); // Find the index of the task to remove
           removeTask(taskIndex); // Call the removeTask function with the index to remove
       });
       
-
-        li.append(deleteBtn);
+        buttonWrapper.append(deleteBtn, cancelBtn)
+        deleteModal.append(deleteModalConfirmation, buttonWrapper);
+        li.append(openDeleteModalBtn, deleteModal);
         ul.append(li);
     });
 
     // Append the unordered list to the app element
     inputModal.append(todoInput, addTodoBtn, closeModalBtn)
-    todoContainer.append(ul, openModalBtn, backBtn)
+    todoContainer.append(categoryTitle, ul, openModalBtn, backBtn)
     app.append(todoContainer, inputModal);
 }

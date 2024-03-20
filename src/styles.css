@@ -3,7 +3,7 @@
 @import './css/renderTodo.css';
 @import './css/header.css';
 @import './css/homeContent.css';
-@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
 :root {
     --light-background: rgb(244, 252, 255);
@@ -33,6 +33,7 @@ body {
 #app {
     position: relative;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     overflow-y: auto;
     letter-spacing: 2px;
@@ -47,8 +48,7 @@ button {
     border: none;
     border-radius: 5px;
     width: 100px;
-    padding: 5px 3px;
-    margin: 10px;
+    padding: 10px 3px;
     cursor: pointer;
     transition: all .5s;
 }

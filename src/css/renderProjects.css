@@ -43,13 +43,6 @@
         color: #4f4f4f;;
     }
 
-    .due-date {
-        position: absolute;
-        font-style: italic;
-        bottom: 3%;
-        right: 5%;
-    }
-
     button {
         border: none;
         border-radius: 5px;
@@ -73,7 +66,7 @@
         }
 
         button:hover {
-            background: red;
+            background:va;
             color: #fff;
         }
     }
