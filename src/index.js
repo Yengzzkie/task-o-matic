@@ -30,5 +30,11 @@ notesBtn.addEventListener('click', () => {
     updateContent(renderProjects())
 })
 
+const instructionsBtn = document.getElementById('instructions');
+instructionsBtn.innerHTML = `<i class="fa-solid fa-person-chalkboard"></i> Instructions`;
+instructionsBtn.addEventListener('click', () => {
+    updateContent(homeContent())
+})
+
 render();
-updateContent(homeContent());
+updateContent(homeContent()); //calls homeContent on page load as default landing page

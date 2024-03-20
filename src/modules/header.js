@@ -12,7 +12,6 @@ export default function headerContent() {
     hamburger.innerHTML = `<i class="fa-solid fa-burger"></i>`;
     close.innerHTML = `<i class="fa-solid fa-angles-left"></i>`;
     footerElement.textContent = `All Rights Reserved | Yengzzkie DzignTech©`;
-
     
     hamburger.addEventListener('click', () => {
         header.classList.add('open');

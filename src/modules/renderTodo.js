@@ -1,6 +1,5 @@
 import '../css/renderTodo.css';
 import renderProjects from './renderProjects.js';
-// import { projects } from "./projectData.js";
 
 export default function renderTodo(index) {
     const projectsJSON = localStorage.getItem('projects');
@@ -41,18 +40,21 @@ export default function renderTodo(index) {
 
     addTodoBtn.addEventListener('click', addTask);
 
+    //main function in adding new tasks
   function addTask() {
-    console.log("Adding task...");
     const todoInputValue = todoInput.value;
-    tasks.push(todoInputValue); 
-    // Update the project's todo array with the updated tasks
-    project.todo = tasks;
-    console.log("Updated project:", project); // Log the updated project
+    const newDate = new Date();
+    const postedDate = `${newDate.getFullYear()}-${newDate.getMonth()}-${newDate.getDate()} / ${newDate.getHours()}:${newDate.getMinutes()}:${newDate.getSeconds()}` ;
+    tasks.push({todo: todoInputValue, date: postedDate}); 
+    project.todo = tasks; // Update the project's todo array with the updated tasks
     localStorage.setItem('projects', JSON.stringify(projects)); //store the new added tasks to the local storage
-    console.log("Projects stored in localStorage:", localStorage.getItem('projects')); // Log the projects stored in localStorage
     renderTodo(index); //then re-render the array by calling renderTodo function which contains the loadProjectsFromLocalStorage() function
-    console.log('New task added') //adds new tasks inside the project
+
+    const lastTask = tasks[tasks.length - 1];
+    console.log("Todo:", lastTask.todo);
+    console.log("Date:", lastTask.date);
   }
+
     backBtn.addEventListener('click', () => {
       renderProjects();
     }); //re-renders the projects when the back button is clicked
@@ -63,6 +65,9 @@ export default function renderTodo(index) {
     // Iterate through the todo array of the project and create list items for each todo
     tasks.forEach((todoItem, index) => {
         const li = document.createElement('li');
+        const todoContainer = document.createElement('div')
+        const todoProp = document.createElement('p');
+        const dateProp = document.createElement('p');
         const deleteModal = document.createElement('dialog');
         const buttonWrapper = document.createElement('div');
         const openDeleteModalBtn = document.createElement('button');
@@ -71,11 +76,17 @@ export default function renderTodo(index) {
         const deleteModalConfirmation = document.createElement('span');
         const taskToDelete = tasks[index]
 
+        
         openDeleteModalBtn.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
         deleteBtn.innerHTML = 'Confirm';
         cancelBtn.textContent = 'Cancel';
         deleteModalConfirmation.textContent = 'Are you done with this task?';
-        li.textContent = todoItem;
+        todoProp.textContent = todoItem.todo;
+        dateProp.textContent = todoItem.date;
+        dateProp.className = 'date';
+
+        todoContainer.append(todoProp, dateProp)
+        li.append(todoContainer);
 
         function removeTask(taskIndex) {
           tasks.splice(taskIndex, 1); // Remove the task from the tasks array

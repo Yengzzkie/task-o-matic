@@ -15,7 +15,21 @@ header {
     width: 300px;
     text-align: center;
     padding: 15px;
-    z-index: 2;
+    z-index: 999;
+
+    i {
+        margin-right: 5px;
+    }
+
+    /* .banner {
+        position: relative;
+        top: 0;
+        left: 0;
+        background: linear-gradient(45deg, rgb(81, 154, 223), rgb(175, 215, 239));
+        border: 1px solid black;
+        height: 200px;
+        width: 100%;
+    } */
 
     h1 {
         position: absolute;

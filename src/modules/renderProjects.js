@@ -19,10 +19,9 @@ export default function renderProjects() {
     const projectImage = new Image();
     const projectTitle = project.title;
     const projectDescription = project.description;
-    const numOfTasks = project.todo;
     const titleContainer = document.createElement("h1");
     const descContainer = document.createElement("p");
-    const taskCounter = document.createElement('span');
+    // const taskCounter = document.createElement('span');
     const pinIcon = document.createElement('span');
     const projectContainer = document.createElement("div");
     const iconsContainer = document.createElement("div");
@@ -34,7 +33,7 @@ export default function renderProjects() {
     pinIcon.innerHTML = `<i class="fa-sharp fa-solid fa-map-pin"></i>`;
     pinIcon.className = 'pin-icon';
     openProjectBtn.innerHTML = `<i class="fa-regular fa-folder-open"></i>`;
-    taskCounter.innerHTML = numOfTasks.length > 0 ? `"You have ${numOfTasks.length} tasks in this project"` : `All tasks are cleared`;
+    // taskCounter.innerHTML = numOfTasks.length > 0 ? `"You have ${numOfTasks.length} tasks in this project"` : `All tasks are cleared`;
     titleContainer.append(projectTitle, projectImage);
     descContainer.textContent = projectDescription;
 
@@ -49,14 +48,12 @@ export default function renderProjects() {
       app.append(ul);
     });
 // *****************EXPERIMENTAL**************************
-console.log(project.todo);
+
     iconsContainer.append(openProjectBtn);
-    projectContainer.append(pinIcon, iconsContainer, titleContainer, descContainer, taskCounter);
-    projectWrapper.appendChild(projectContainer);
+    projectContainer.append(pinIcon, iconsContainer, titleContainer, descContainer);
+    projectWrapper.append(projectContainer);
     app.append(projectWrapper);
   });
-
-  
 
   return projectWrapper;
 }
