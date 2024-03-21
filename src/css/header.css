@@ -18,18 +18,9 @@ header {
     z-index: 999;
 
     i {
+        font-size: 1.1rem;
         margin-right: 5px;
     }
-
-    /* .banner {
-        position: relative;
-        top: 0;
-        left: 0;
-        background: linear-gradient(45deg, rgb(81, 154, 223), rgb(175, 215, 239));
-        border: 1px solid black;
-        height: 200px;
-        width: 100%;
-    } */
 
     h1 {
         position: absolute;
@@ -46,7 +37,6 @@ header {
 
     .open-button {
         display: none;
-        font-size: 1.2rem;
         transform: translateX(-50%);
         animation: bounce .5s infinite linear;
     }
@@ -99,9 +89,13 @@ header {
         .open-button {
             display: block;
             position: fixed;
-            top: 2%;
-            right: -17%;
+            top: 3%;
+            right: -22%;
             opacity: 1;
+
+            i {
+                font-size: 1.5rem;
+            }
         }
 
         .close-button {
@@ -111,6 +105,10 @@ header {
             right: 5%;
             font-size: 1.5rem;
             opacity: 0;
+
+            i {
+                font-size: 1.5rem;
+            }
         }
     }
 

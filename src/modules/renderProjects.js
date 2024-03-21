@@ -11,7 +11,7 @@ export default function renderProjects() {
 
   const app = document.getElementById("app");
   const projectWrapper = document.createElement("div"); //contains the input form
-  
+
   projectWrapper.className = "project-wrapper";
   app.innerHTML = ""; //clears the contents everytime a new project is added to avoid duplication of projects
 
@@ -34,7 +34,7 @@ export default function renderProjects() {
     pinIcon.className = 'pin-icon';
     openProjectBtn.innerHTML = `<i class="fa-regular fa-folder-open"></i>`;
     // taskCounter.innerHTML = numOfTasks.length > 0 ? `"You have ${numOfTasks.length} tasks in this project"` : `All tasks are cleared`;
-    titleContainer.append(projectTitle, projectImage);
+    titleContainer.append(projectTitle);
     descContainer.textContent = projectDescription;
 
     // *****************EXPERIMENTAL**************************
@@ -50,7 +50,7 @@ export default function renderProjects() {
 // *****************EXPERIMENTAL**************************
 
     iconsContainer.append(openProjectBtn);
-    projectContainer.append(pinIcon, iconsContainer, titleContainer, descContainer);
+    projectContainer.append(projectImage, pinIcon, iconsContainer, titleContainer, descContainer);
     projectWrapper.append(projectContainer);
     app.append(projectWrapper);
   });

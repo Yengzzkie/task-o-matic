@@ -32,14 +32,14 @@ body {
 
 #app {
     position: relative;
-    display: flex;
+    /* display: flex; */
     flex-direction: column;
     justify-content: center;
     overflow-y: auto;
     letter-spacing: 2px;
     width: 100%;
     height: 100vh;
-    padding: 50px;
+    /* padding: 50px; */
 }
 
 button {

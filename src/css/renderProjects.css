@@ -1,16 +1,20 @@
 .project-container {
     position: relative;
+    display: flex;
+    justify-content: center;
     background: #ffffff;
     box-shadow: 0 0rem .8rem #afafaf;
     border-radius: 10px;
     width: 100%;
-    max-height: 300px;
+    height: 300px;
     padding: 50px 20px;
     margin: 15px;
+    overflow: hidden;
 
     h1 {
         padding-left: 10px;
         border-radius: 7px;
+        z-index: 2;
     }
 
     .pin-icon {
@@ -26,10 +30,12 @@
     }
 
     img {
+        position: absolute;
+        top: -5%;
+        left: -7%;
         padding: 1px;
-
         margin-left: 10px;
-        width: 35px;
+        width: 350px;
     }
 
     p {
@@ -74,7 +80,7 @@
 
 .project-wrapper {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(1fr, 1fr));
     gap: 40px;
     max-height: 100%;
     width: 100%;
@@ -95,6 +101,10 @@
 @media screen and (max-width: 1024px) {
     .project-container {
         height: auto;
+
+        img {
+            width: 150px;
+        }
     }
 
 
