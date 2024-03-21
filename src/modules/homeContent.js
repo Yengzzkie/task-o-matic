@@ -9,6 +9,7 @@ export default function homeContent() {
     const heroImage = new Image();
     const bannerImage = new Image();
     const banner = document.createElement('div')
+    const heroWrapper = document.createElement('div');
     const userName = document.createElement('h1')
     const getStartedBtn = document.createElement('button');
     const usernameModal = document.createElement('dialog');
@@ -16,6 +17,7 @@ export default function homeContent() {
     bannerImage.src = bannerPNG;
     heroImage.src = notesPNG;
     banner.className = 'banner';
+    heroWrapper.className = 'hero-content-wrapper';
     userName.className = 'greeting';
     usernameModal.className = 'user-modal';
     hero.className = 'hero';
@@ -61,7 +63,8 @@ export default function homeContent() {
 
     checkUsername();
     banner.append(userName, getStartedBtn, bannerImage)
-    hero.append(banner, heroTitle, slogan, heroImage)
+    heroWrapper.append(heroTitle, slogan, heroImage)
+    hero.append(banner, heroWrapper)
 
     return hero;
 }
