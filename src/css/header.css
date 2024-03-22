@@ -69,7 +69,25 @@ header {
 
     footer {
         position: fixed;
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        justify-content: center;
         bottom: 3%;
+
+        button {
+            background: transparent;
+            color: var(--button-bg);
+            border-radius: 0;
+            letter-spacing: 4px;
+            width: 100%;
+            padding-left: 15px;
+            margin-bottom: 30px;
+        }
+
+        button:hover {
+            color: #fff;
+        }
     }
 }
 

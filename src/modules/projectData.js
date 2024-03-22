@@ -16,7 +16,13 @@ export let projects = [
     todo: [],
   },
   { title: "Work", description: "Go to work", image: workPNG, todo: [] },
-  { title: "Study", description: "Read some books", image: readPNG, todo: [] },
+  {
+    title: "Grocery",
+    description: "Stock up those shelves",
+    image: groceryPNG,
+    todo: [],
+  },
+  { title: "Education", description: "Read some books", image: readPNG, todo: [] },
   {
     title: "Health",
     description: "Healthy Living",
@@ -39,12 +45,6 @@ export let projects = [
     title: "Finance",
     description: "All about money",
     image: financePNG,
-    todo: [],
-  },
-  {
-    title: "Grocery",
-    description: "Stock up those shelves",
-    image: groceryPNG,
     todo: [],
   },
   {
