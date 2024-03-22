@@ -49,7 +49,7 @@ export default function homeContent() {
     getName.textContent = "To get started, please enter your name";
     confirmBtn.textContent = "Confirm";
 
-    confirmBtn.addEventListener("click", (event) => {
+    confirmBtn.addEventListener("click", () => {
       const username = usernameInput.value;
 
       if (username.trim() !== "") {

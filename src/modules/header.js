@@ -47,7 +47,8 @@ export default function headerContent() {
         confirmBtn.addEventListener('click', () => { //confirms deletion of data from local storage
             localStorage.clear(); //calls this function to delete from local storage
             dialogWrapper.innerHTML = ''; //empties the dialog wrapper
-            closeModal(); //then close the modal
+            closeModal(); //close the modal
+            location.reload(); //then reloads the page
         });
 
         cancelBtn.addEventListener('click', () => { //cancels 
