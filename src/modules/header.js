@@ -20,7 +20,7 @@ export default function headerContent() {
     close.className = 'close-button';
     hamburger.innerHTML = `<i class="fa-solid fa-burger"></i>`;
     close.innerHTML = `<i class="fa-solid fa-angles-left"></i>`;
-    clearDB.innerHTML = `<i class="fa-solid fa-trash-can"></i> Delete All Notes`;
+    clearDB.innerHTML = `<i class="fa-solid fa-trash-can"></i> Delete All Data`;
     footerElement.textContent = `All Rights Reserved | Yengzzkie DzignTech©`;
     
     hamburger.addEventListener('click', () => { //hamburger open event listener for mobile screens
@@ -39,17 +39,19 @@ export default function headerContent() {
     }); //event listener for clear storage button
 
     function clearStorage() { //function for clearing local storage
-        clearDataModal.showModal();
+        clearDataModal.showModal(); //opens the deletion modal
+
         dialogWrapper.append(clearDataWarning, confirmBtn, cancelBtn)
         clearDataModal.append(dialogWrapper);
 
         confirmBtn.addEventListener('click', () => { //confirms deletion of data from local storage
-            localStorage.clear();
-            closeModal();
+            localStorage.clear(); //calls this function to delete from local storage
+            dialogWrapper.innerHTML = ''; //empties the dialog wrapper
+            closeModal(); //then close the modal
         });
 
-        cancelBtn.addEventListener('click', () => { //cancels and close modal for data deletion
-            closeModal();
+        cancelBtn.addEventListener('click', () => { //cancels 
+            closeModal(); //and close modal for data deletion
         })
     }
 

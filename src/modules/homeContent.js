@@ -50,7 +50,6 @@ export default function homeContent() {
     confirmBtn.textContent = "Confirm";
 
     confirmBtn.addEventListener("click", (event) => {
-    //   event.preventDefault();
       const username = usernameInput.value;
 
       if (username.trim() !== "") {
